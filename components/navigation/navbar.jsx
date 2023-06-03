@@ -3,9 +3,17 @@ import styles from "../../styles/Navbar.module.css";
 export default function Navbar() {
 	return (
 		<nav className={styles.navbar}>
-			<a href="https://alchemy.com/?a=create-web3-dapp" target={"_blank"}>
-				<img className={styles.alchemy_logo} src="/cw3d-logo.png"></img>
+			<a href="" target={"_self"}>
+				<h1>Listen</h1>
 			</a>
+			<a href="" target={"_self"}>
+				<h1>Claim</h1>
+			</a>
+			<a href="" target={"_self"}>
+				<h1>Upload</h1>
+			</a>
+			<p> </p>
+			<p> </p>
 			<ConnectButton></ConnectButton>
 		</nav>
 	);
