@@ -11,7 +11,6 @@
 	},
 	"dependencies": {
 		"@rainbow-me/rainbowkit": "^0.12.4",
-		"@usedapp/core": "^1.2.10",
 		"alchemy-sdk": "^2.6.2",
 		"axios": "^1.4.0",
 		"cors": "^2.8.5",

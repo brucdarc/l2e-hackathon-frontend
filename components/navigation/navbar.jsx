@@ -14,7 +14,8 @@ export default function Navbar() {
 			</a>
 			<p> </p>
 			<p> </p>
-			<ConnectButton></ConnectButton>
+			<div className={styles.walletButton}> MUSE</div>
+			<ConnectButton showBalance={false}></ConnectButton>
 		</nav>
 	);
 }

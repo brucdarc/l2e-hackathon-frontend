@@ -86,6 +86,10 @@
     width: 150px;
 }
 
+.button[disabled]{
+    opacity: 0.3;
+}
+
 .transaction_box {
     width: 100%;
     display: flex;
