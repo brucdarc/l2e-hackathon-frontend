@@ -19,6 +19,8 @@ export default function Claim({
 
     const [userBalance, setUserBalance] = useState(0);
 
+    const [userClaimable, setUserClaimable] = useState(0);
+
     const [claiming, setClaiming] = useState(false);
 
     const museContract = new Contract('0xd481Df2b6638f225ca90d26e08898430AB0d179C', abi, signer);
@@ -31,7 +33,13 @@ export default function Claim({
                 const balance = await museContract.balanceOf(userAddress)
                 const scaledBalance = ethers.utils.formatEther(balance.toString());
                 const res = Math.round(scaledBalance * 1e4) / 1e4;
+
+                const resp = await axios.post('http://localhost:8080/claimable', {
+                    address: userAddress
+                });
+
                 setUserBalance(res);
+                setUserClaimable(Math.round(resp.data.claimable_tokens * 1e4) / 1e4);
             }
 
             fetchBalance();
@@ -87,11 +95,6 @@ export default function Claim({
         setClaiming(false);
     }
 
-
-    // Function to mint a new NFT
-    const mintNFT = async () => {
-        // Create a new instance of the NFT contract using the contract address and ABI
-    };
     return (
         <div className={styles.page_flexBox}>
             <div className={styles.page_container}>
@@ -102,6 +105,9 @@ export default function Claim({
                     <p className={styles.text}>
                         You have {userBalance} MUSE
                     </p>
+                    <p className={styles.text}>
+                        You can claim {userClaimable} MUSE
+                    </p>
                     <div>
                         <button
                             className={styles.button}
@@ -110,11 +116,13 @@ export default function Claim({
 
                             Claim
                         </button>
+                        {/*
                         <button
                             className={styles.button}
                             onClick={testBalance}>
                             Test Balance
                         </button>
+                        */}
                     </div>
                 </div>
             </div>

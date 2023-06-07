@@ -1,6 +1,13 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import styles from "../../styles/Navbar.module.css";
+
+//import { Mainnet, DAppProvider, useEtherBalance, useEthers, Config, Goerli } from '@usedapp/core'
+
+import { useContractRead } from 'wagmi'
+import {abi as museAbi} from '../../public/museAbi.json';
+
 export default function Navbar() {
+
 	return (
 		<nav className={styles.navbar}>
 			<a href="/musicPlayer" target={"_self"}>
@@ -14,8 +21,7 @@ export default function Navbar() {
 			</a>
 			<p> </p>
 			<p> </p>
-			<div className={styles.walletButton}> MUSE</div>
-			<ConnectButton showBalance={false}></ConnectButton>
+			<ConnectButton showBalance={true}></ConnectButton>
 		</nav>
 	);
 }
