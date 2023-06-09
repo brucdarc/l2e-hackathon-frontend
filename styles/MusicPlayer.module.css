@@ -1,3 +1,9 @@
+
+@font-face {
+    font-family: "Vilane";
+    src: url('../public/Vilane.ttf') format('truetype');
+}
+
 .page_flexBox {
     display: flex;
     justify-content: center;
@@ -7,7 +13,43 @@
     padding: 20px;
     margin-top: 3rem;
     border-radius: 12px;
-    min-height: 100vh;
+    min-height: 40vh;
+}
+
+.song_list_container{
+    overflow-y:scroll;
+    scroll-behaviour: smooth;
+    max-height: 60vh;
+    border: 1px solid #2E2E2E;
+}
+
+.song_container {
+    min-width: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid #2E2E2E;
+    border-radius: 12px;
+    margin-top: 20px;
+    min-height: 80px;
+}
+
+.music_button {
+    border-radius: 8px;
+    background-color: #ED1C24;
+    padding: 8px 10px;
+    font-weight: 700;
+    margin-top: 1em;
+    border: none;
+    color: white;
+    width: 150px;
+    font-family: "Vilane", Times, serif;
+}
+
+.audio_player_wrapper {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 10px;
 }
 
 .page_container {
@@ -73,9 +115,17 @@
 }
 
 .nft_title {
-    font-size: 24px;
+    font-size: 35px;
     font-weight: 700;
     margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+.currently_playing_text {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    text-align: center;
 }
 
 .nft_author {
@@ -92,6 +142,7 @@
 
 .text {
     font-size: 18px;
+    font-family: "Vilane", Times, serif;
 }
 
 .mintSectionHeaderText{

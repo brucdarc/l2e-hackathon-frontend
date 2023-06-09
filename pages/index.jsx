@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <div>
       <main className={styles.main}>
-        <Mp3Uploader></Mp3Uploader>
       </main>
     </div>
   );

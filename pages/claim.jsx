@@ -1,5 +1,5 @@
 // Import CSS styles, and necessary modules from packages
-import styles from "../styles/Mp3Upload.module.css";
+import styles from "../styles/Claim.module.css";
 import { Contract } from "alchemy-sdk";
 import {useEffect, useState} from "react";
 import { useAccount, useSigner } from "wagmi";
