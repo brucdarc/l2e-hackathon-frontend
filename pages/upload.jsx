@@ -17,14 +17,8 @@ export default function Mp3Uploader({
                                         contentSrc,
                                         contentType,
                                     }) {
-    // Get the user's wallet address and status of their connection to it
-    const { address, isDisconnected } = useAccount();
-    // Get the signer instance for the connected wallet
-    const { data: signer } = useSigner();
-    // State hooks to track the transaction hash and whether or not the NFT is being minted
-    const [txHash, setTxHash] = useState();
 
-    const [fileData, setFileData] = useState("");
+    const { data: signer } = useSigner();
 
     const [selectedFile, setSelectedFile] = useState();
     const [LotteryTokenAmount, setLotteryTokenAmount] = useState('');
@@ -126,28 +120,6 @@ export default function Mp3Uploader({
         }
         setIsMinting(false);
     }
-
-    const checkMintDisabled = () => {
-        /*
-        console.log('song title is empty ', SongTitle == '');
-        console.log('Mint amount is not a number ', isNaN(parseFloat(LotteryTokenAmount)));
-        console.log('file is empty ', !selectedFile);
-
-        console.log('song title ', SongTitle);
-        console.log('mint amount ', LotteryTokenAmount);
-        console.log('selected file ', selectedFile);
-
-        return SongTitle == '' || isNaN(parseFloat(LotteryTokenAmount)) || !selectedFile
-
-         */
-        console.log('isipfsing ', isUploadingToIpfs);
-        console.log('isminting ', isMinting);
-    }
-
-    // Function to mint a new NFT
-    const mintNFT = async () => {
-        // Create a new instance of the NFT contract using the contract address and ABI
-    };
     return (
         <div className={styles.page_flexBox}>
             <div className={styles.page_container}>
@@ -195,12 +167,6 @@ export default function Mp3Uploader({
                         onClick={handleSubmission}>
                         <b>{isUploadingToIpfs ? 'Uploading to IPFS....' : isMinting ? 'Sending Transaction...' : 'Mint to Lottery'}</b>
                     </button>
-                    {/*}
-                    <button
-                        onClick={checkMintDisabled}>
-                        test shit
-                    </button>
-                    */}
                 </div>
             </div>
         </div>

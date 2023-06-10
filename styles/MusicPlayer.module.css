@@ -74,6 +74,16 @@
     margin: auto;
 }
 
+.modal {
+    background-color: #DBDDDE;
+}
+
+.modal_liner {
+    min-width: 100%;
+    min-height: 100%;
+    margin: 50px;
+}
+
 .lotto_input_container {
     display: flex;
     align-items: center;
@@ -121,12 +131,35 @@
     text-align: center;
 }
 
-.currently_playing_text {
+.currently_playing_header {
     font-size: 25px;
     font-weight: 700;
     margin-bottom: 0.3rem;
     text-align: center;
 }
+
+.currently_playing_text {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 12px;
+    text-align: center;
+    background-image:
+            linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet
+            );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: move 800s linear infinite;
+}
+
+@keyframes move {
+    to {
+        background-position: 4500vh;
+    }
+}
+
 
 .nft_author {
     font-size: 16px;
@@ -155,6 +188,11 @@
     color: black;
     border-color: black;
     margin-block: 1em;
+}
+
+.close_corner {
+    display: flex;
+    justify-content: end;
 }
 
 .button {
@@ -232,3 +270,5 @@
         font-size: 20px;
     }
 }
+
+

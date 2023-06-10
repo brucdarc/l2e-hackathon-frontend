@@ -37,6 +37,10 @@ a {
 	margin: 0;
 }
 
+.ReactModal__Body--open {
+	overflow: hidden;
+}
+
 /* width */
 ::-webkit-scrollbar {
 	width: 20px;

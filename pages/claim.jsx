@@ -34,7 +34,7 @@ export default function Claim({
                 const scaledBalance = ethers.utils.formatEther(balance.toString());
                 const res = Math.round(scaledBalance * 1e4) / 1e4;
 
-                const resp = await axios.post('http://localhost:8080/claimable', {
+                const resp = await axios.post('http://listen-2-win.us-east-2.elasticbeanstalk.com/claimable', {
                     address: userAddress
                 });
 
@@ -46,25 +46,6 @@ export default function Claim({
         }
 
     }, [signer, claiming]);
-    const testBalance = async () => {
-
-        console.log(userBalance);
-        /*
-        console.log('balance data ', data);
-        console.log('is error ', isError);
-        console.log('is loading ', isLoading);
-        console.log('status ', status);
-
-         */
-        //console.log('test tok bal ', testdata);
-        //console.log('is err test ', isErrorTest)
-        //console.log('is loading test ', isLoadingTest);
-
-        const userAddress = await signer.getAddress()
-        const thing = await museContract.balanceOf(userAddress)
-
-        console.log(thing.toString())
-    }
 
     const claimTokens = async () => {
 
@@ -116,13 +97,6 @@ export default function Claim({
 
                             Claim
                         </button>
-                        {/*
-                        <button
-                            className={styles.button}
-                            onClick={testBalance}>
-                            Test Balance
-                        </button>
-                        */}
                     </div>
                 </div>
             </div>
