@@ -15,6 +15,7 @@ export default function Home() {
               Upload your songs over at the upload tab. This will automatically mint a music nft, and start a lottery for that nft! While the lottery is ongoing, everyone can listen to that song and earn tokens.
           </p>
           <h1>Please Switch to the Goerli Network if You Haven't Already</h1>
+          <img className={styles.logo} src={'/image/logo1.png'} alt={''}/>
       </main>
     </div>
   );

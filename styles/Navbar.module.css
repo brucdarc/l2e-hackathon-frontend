@@ -7,7 +7,9 @@
 	width: 100%;
 	padding: 2rem 4rem 0.8rem 4rem;
 	gap: 2rem;
-	margin-bottom: 4rem;
+	margin-bottom: 1rem;
+	position: relative;
+	bottom: 2.5rem;
 }
 
 .pages {
@@ -18,8 +20,10 @@
 }
 
 .alchemy_logo{
-	width: 6rem;
+	width: 8rem;
 	cursor: pointer;
+	position: relative;
+	top: .5rem;
 }
 
 .walletButton{

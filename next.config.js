@@ -6,6 +6,7 @@ const nextConfig = {
 module.exports = {
 	env: {
 	},
+	trailingSlash: true,
 };
 
 module.exports = nextConfig;

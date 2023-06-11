@@ -7,6 +7,8 @@
 html,
 body {
 	background-color: #828283;
+	background-image: radial-gradient(circle at center center, #828283, #DBDDDE), repeating-radial-gradient(circle at center center, #F5F5F5, #F5F5F5, 10px, transparent 20px, transparent 10px);
+	background-blend-mode: multiply;
 	font-family: "Vilane", Times, serif;
 }
 h1{

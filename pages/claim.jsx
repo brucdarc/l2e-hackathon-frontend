@@ -26,17 +26,22 @@ export default function Claim({
     const museContract = new Contract('0xd481Df2b6638f225ca90d26e08898430AB0d179C', abi, signer);
 
     useEffect(() => {
-
+        console.log('useeffect')
         if(signer) {
             const fetchBalance = async () => {
+                console.log('useeffect 2')
                 const userAddress = await signer.getAddress()
                 const balance = await museContract.balanceOf(userAddress)
                 const scaledBalance = ethers.utils.formatEther(balance.toString());
                 const res = Math.round(scaledBalance * 1e4) / 1e4;
 
+                console.log('useeffect 2.5')
+
                 const resp = await axios.post('http://listen-2-win.us-east-2.elasticbeanstalk.com/claimable', {
                     address: userAddress
                 });
+
+                console.log('useeffect 3')
 
                 setUserBalance(res);
                 setUserClaimable(Math.round(resp.data.claimable_tokens * 1e4) / 1e4);
@@ -57,7 +62,7 @@ export default function Claim({
 
             const userAddress = await signer.getAddress()
 
-            const resp = await axios.post('http://localhost:8080/claim', {
+            const resp = await axios.post('http://listen-2-win.us-east-2.elasticbeanstalk.com/claim', {
                 address: userAddress
             });
 

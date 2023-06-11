@@ -47,6 +47,8 @@ const wagmiClient = createClient({
 	provider,
 });
 
+import Head from 'next/head';
+
 export { WagmiConfig, RainbowKitProvider };
 
 function MyApp({ Component, pageProps }) {
@@ -56,7 +58,18 @@ function MyApp({ Component, pageProps }) {
 			if (!isReconnected) router.reload();
 		},
 	});
+
+	const path = (/#!(\/.*)$/.exec(router.asPath) || [])[1];
+	if (path) {
+		router.replace(path);
+	}
+
 	return (
+		<div>
+		<Head>
+			<title>Listen2Win</title>
+			<link rel="icon" type="image/png" href="/image/flavicon.png" sizes="any"/>
+		</Head>
 		<WagmiConfig client={wagmiClient}>
 			<RainbowKitProvider
 				modalSize="compact"
@@ -68,6 +81,7 @@ function MyApp({ Component, pageProps }) {
 				</MainLayout>
 			</RainbowKitProvider>
 		</WagmiConfig>
+		</div>
 	);
 }
 
