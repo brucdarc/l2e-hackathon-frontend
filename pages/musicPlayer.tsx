@@ -40,9 +40,19 @@ export default function MusicPlayer({
     const {data: signer} = useSigner();
 
     const MumasContract = new Contract('0x142671aa7c6a50638bbc3BDd758eeB76579b3A32', abi, signer);
+    const museContract = new Contract('0xd481Df2b6638f225ca90d26e08898430AB0d179C', museAbi, signer);
 
     const [currentLotteryIndex, setCurrentLotteryIndex] = useState(0);
     const [lotteries, setLotteries] = useState<Lottery[]>([]);
+    const [userClaimable, setUserClaimable] = useState(0);
+
+    const [updateClaimable, setUpdateClaimable] = useState(0);
+    const [claiming, setClaiming] = useState(false);
+
+    const doUpdateClaimable = () =>{
+        setUpdateClaimable(updateClaimable + 1);
+    }
+
     const player = useRef();
 
     useEffect(() => {
@@ -80,6 +90,27 @@ export default function MusicPlayer({
 
     }, [signer]);
 
+    useEffect( () => {
+
+        const fetchBalance = async () => {
+            const userAddress = await signer.getAddress()
+            const balance = await museContract.balanceOf(userAddress)
+            const scaledBalance = ethers.utils.formatEther(balance.toString());
+            const res = Math.trunc(parseFloat( scaledBalance ) * 1e4) / 1e4;
+            
+            const resp = await axios.post('https://backend.listen2win.net/claimable', {
+                address: userAddress
+            });
+
+            setUserClaimable(Math.trunc(resp.data.claimable_tokens * 1e4) / 1e4);
+        }
+
+        if(signer) fetchBalance();
+
+    }, [signer, updateClaimable]);
+
+
+
     const fetchMetadata = async (lotties) => {
 
         let promises = []
@@ -104,10 +135,12 @@ export default function MusicPlayer({
 
             const userAddress = await signer.getAddress()
 
-            await axios.post('http://listen-2-win.us-east-2.elasticbeanstalk.com/play', {
+            await axios.post('https://backend.listen2win.net/play', {
                 address: userAddress
             });
             console.log('Sent Play Request To Backend');
+
+            doUpdateClaimable();
         }
     }
 
@@ -116,12 +149,41 @@ export default function MusicPlayer({
         if(signer) {
             const userAddress = await signer.getAddress()
 
-            await axios.post('http://listen-2-win.us-east-2.elasticbeanstalk.com/pause', {
+            await axios.post('https://backend.listen2win.net/pause', {
                 address: userAddress
             });
 
             console.log('Sent Pause Request To Backend');
+
+            doUpdateClaimable();
         }
+    }
+
+    const claimTokens = async () => {
+
+        //console.log('token balance ', data);
+
+        setClaiming(true);
+
+        try {
+
+            const userAddress = await signer.getAddress()
+
+            const resp = await axios.post('https://backend.listen2win.net/claim', {
+                address: userAddress
+            });
+
+            const claimTx = await museContract.claimTokens(userAddress, resp.data.claimed_time, resp.data.nonce, resp.data.v, resp.data.r, resp.data.s);
+
+            await claimTx.wait();
+
+            console.log('claimed tokens');
+        } catch (e) {
+            // If an error occurs, log it to the console and reset isMinting to false
+            console.log(e);
+        }
+
+        setClaiming(false);
     }
 
     const handlePlay = async (lottery: Lottery, index)=> {
@@ -129,6 +191,7 @@ export default function MusicPlayer({
         // @ts-ignore
         player?.current.audio.current.play();
         await onPlayMusic();
+        doUpdateClaimable();
     }
 
     const setPopupOpen = async (tokenID, isOpen) => {
@@ -182,9 +245,20 @@ export default function MusicPlayer({
 
     return (
         <div>
-            <h1 className={styles.nft_title}>
-                Listen to Music
-            </h1>
+            <div className={styles.title_holder}>
+                <h1 className={styles.page_title}>
+                    Listen to Music
+                </h1>
+                <div className={styles.earned_token_holder}>
+                    <h2 className={styles.userClaimable}>{userClaimable} MUSE Earned</h2>
+                    <button
+                        className={styles.claim_button}
+                        disabled={claiming}
+                        onClick={claimTokens}>
+                        {claiming ? 'Claiming...' : 'Claim Now'}
+                    </button>
+                </div>
+            </div>
             <div className={styles.page_flexBox}>
                 <div className={styles.page_container}>
                     <h2 className={styles.currently_playing_header}>

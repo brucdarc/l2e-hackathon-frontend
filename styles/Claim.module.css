@@ -1,4 +1,5 @@
 .page_flexBox {
+    background-color: #5A5B5B;
     display: flex;
     justify-content: center;
     border: 2px solid #2E2E2E;
@@ -7,7 +8,6 @@
     padding: 20px;
     margin-top: 3rem;
     border-radius: 12px;
-    min-height: 100vh;
 }
 
 .page_container {
@@ -18,9 +18,51 @@
     display : block;
 }
 
+.claim_holder {
+    width: 25vw;
+}
+
+.center_content, .bottom_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom_center {
+    margin-top: 2rem;
+}
+
 .page_header {
     font-size: 2rem;
     font-weight: 600;
+}
+
+.topRow, .bottomRow  {
+    width: 15vw;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.topRow {
+}
+
+.bottomRow {
+
+}
+
+.tokenDisplay {
+    padding: 20px;
+}
+
+.amountRow {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
 }
 
 .nft_media_container {
@@ -75,7 +117,7 @@
 .nft_title {
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 0.3rem;
+    margin-bottom: 2rem;
 }
 
 .nft_author {

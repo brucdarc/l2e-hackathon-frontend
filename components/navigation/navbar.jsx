@@ -10,6 +10,9 @@ export default function Navbar() {
 
 	return (
 		<nav className={styles.navbar}>
+			<a href="/" target={"_self"}>
+				<img className={styles.alchemy_logo} src={'/image/logo2.png'} alt={''}/>
+			</a>
 			<a href="/musicPlayer" target={"_self"}>
 				<h1>Listen</h1>
 			</a>

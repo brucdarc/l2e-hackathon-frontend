@@ -1,4 +1,5 @@
 .page_flexBox {
+    background-color: #5A5B5B;
     display: flex;
     justify-content: center;
     border: 2px solid #2E2E2E;
@@ -7,7 +8,7 @@
     padding: 20px;
     margin-top: 3rem;
     border-radius: 12px;
-    min-height: 100vh;
+    min-height: 70vh;
 }
 
 .page_container {
@@ -73,9 +74,10 @@
 }
 
 .nft_title {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 0.3rem;
+    text-align: center;
 }
 
 .nft_author {

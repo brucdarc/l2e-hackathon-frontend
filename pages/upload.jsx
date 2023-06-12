@@ -123,12 +123,12 @@ export default function Mp3Uploader({
     return (
         <div className={styles.page_flexBox}>
             <div className={styles.page_container}>
+                <h1 className={styles.nft_title}>
+                    Upload Music
+                </h1>
                 <div className={styles.lotto_input_container}>
-                    <h1 className={styles.nft_title}>
-                        Upload Music
-                    </h1>
-                    <p className={styles.text}>
-                        Upload your music as an mp3 file to share with others
+                    <p className={styles.mintSectionHeaderText}>
+                        Upload your music as an mp3 or wav file to share with others
                     </p>
                     <div className={styles.inputField}>
                         <input type="file" onChange={changeHandler} />
